@@ -1,4 +1,4 @@
 module Tmdby
-    class Lists
-    end
+  class Lists
+  end
 end

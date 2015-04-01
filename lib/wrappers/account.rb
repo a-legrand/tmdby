@@ -1,4 +1,4 @@
 module Tmdby
-    class Account
-    end
+  class Account
+  end
 end

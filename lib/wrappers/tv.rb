@@ -1,4 +1,4 @@
 module Tmdby
-    class Tv
-    end
+  class Tv
+  end
 end

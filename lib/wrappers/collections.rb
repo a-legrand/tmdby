@@ -1,4 +1,4 @@
 module Tmdby
-    class Collections
-    end
+  class Collections
+  end
 end

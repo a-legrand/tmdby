@@ -1,9 +1,9 @@
 module Tmdby
-    class Jobs
+  class Jobs
 
-        # Get a list of valid jobs
-        def self.list
-            Tmdby::Client.get "job/list"
-        end
+    # Get a list of valid jobs
+    def self.list
+      Tmdby::Client.get "job/list"
     end
+  end
 end

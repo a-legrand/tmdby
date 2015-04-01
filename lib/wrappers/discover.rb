@@ -1,4 +1,4 @@
 module Tmdby
-    class Discover
-    end
+  class Discover
+  end
 end

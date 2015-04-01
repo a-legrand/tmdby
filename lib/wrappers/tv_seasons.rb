@@ -1,4 +1,4 @@
 module Tmdby
-    class TvSeasons
-    end
+  class TvSeasons
+  end
 end

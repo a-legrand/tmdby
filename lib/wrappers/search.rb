@@ -1,4 +1,4 @@
 module Tmdby
-    class Search
-    end
+  class Search
+  end
 end

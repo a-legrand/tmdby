@@ -1,4 +1,4 @@
 module Tmdby
-    class GuestSessions
-    end
+  class GuestSessions
+  end
 end

@@ -1,4 +1,4 @@
 module Tmdby
-    class People
-    end
+  class People
+  end
 end

@@ -1,4 +1,4 @@
 module Tmdby
-    class Companies
-    end
+  class Companies
+  end
 end

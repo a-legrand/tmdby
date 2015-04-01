@@ -1,4 +1,4 @@
 module Tmdby
-    class Genres
-    end
+  class Genres
+  end
 end

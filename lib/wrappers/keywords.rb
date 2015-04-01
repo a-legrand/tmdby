@@ -1,4 +1,4 @@
 module Tmdby
-    class Keywords
-    end
+  class Keywords
+  end
 end
