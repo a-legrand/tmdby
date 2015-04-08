@@ -1,9 +1,11 @@
 module Tmdby
-  class Jobs
+  class Jobs < Wrapper
+
+    @root = 'job'
 
     # Get a list of valid jobs
     def self.list
-      Tmdby::Client.get "job/list"
+      self.fetch "list"
     end
   end
 end

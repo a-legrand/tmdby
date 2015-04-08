@@ -1,9 +1,11 @@
 module Tmdby
-  class Reviews
+  class Reviews < Wrapper
+
+    @root = "review"
 
     # Get the full details of a review by ID
     def self.get(id)
-      Tmdby::Client.get "review/#{id}"
+      self.fetch id
     end
   end
 end

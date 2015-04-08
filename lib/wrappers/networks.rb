@@ -1,9 +1,11 @@
 module Tmdby
-  class Networks
+  class Networks < Wrapper
+
+    @root = "network"
 
     # This method is used to retrieve the basic information about a TV network
     def self.get(id)
-        Tmdby::Client.get "network/#{id}"
+        self.fetch id
     end
   end
 end

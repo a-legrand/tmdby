@@ -1,10 +1,11 @@
 module Tmdby
-  class Configuration
+  class Configuration < Wrapper
+    @root = 'configuration'
 
     # Get the system wide configuration information
     # API reference : Updated on Dec. 13, 2013
     def self.get()
-      Tmdby::Client.get "configuration"
+      self.fetch
     end
   end
 end

@@ -1,5 +1,7 @@
 module Tmdby
-  class Find
+  class Find < Wrapper
+
+    @root = 'find'
 
     # The find method makes it easy to search for objects in our database by an external id
     #
@@ -10,7 +12,7 @@ module Tmdby
     #     TVSeasons: freebase_mid, freebase_id, tvdb_id, tvrage_id
     #     TVEpisodes: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id
     def self.get(id, external_source, language = nil)
-      Tmdby::Client.get "find/#{id}", {:external_source => external_source, :language => language}
+      self.fetch id, {:external_source => external_source, :language => language}
     end
   end
 end

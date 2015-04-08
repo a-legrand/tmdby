@@ -1,7 +1,10 @@
 module Tmdby
-  class Movies
+  class Movies < Wrapper
+
+    @root = "movie"
+
     def self.get(id)
-        Tmdby::Client.get("movie/#{id}")
+      self.fetch id
     end
   end
 end
