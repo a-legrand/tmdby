@@ -15,15 +15,28 @@ module Tmdby
       @@api_key = key
     end
 
-    def self.get(api_route, params = {})
+    def self.api_call(method_call, api_route, params = {})
       if @@api_key
         params[:api_key] = @@api_key
 
         uri = URI("#{@@api_url}/#{@@api_version}/#{api_route}?#{URI.encode_www_form(params)}")
-        response = Net::HTTP.get_response(uri)
+        puts "[#{method_call}] #{uri}"
+
+        case method_call
+        when "get"
+          response = Net::HTTP.get_response(uri)
+        when "delete"
+          # http = Net::HTTP.new(@@api_url)
+          # req = Net::HTTP::Delete.new(path)
+          # response = http.request(req)
+          pp uri.host
+          pp "#{uri.path}?#{uri.query}"
+          response = Net::HTTP.new(uri.host, uri.port).delete("#{uri.path}?#{uri.query}")
+          pp response
+        end
 
         if response.is_a? Net::HTTPSuccess
-          Tmdby::Response.new(response)
+          Tmdby::Response.new(response, uri, method_call)
         else
           raise RuntimeError, "An error has occured : #{response.body}"
         end

@@ -11,8 +11,11 @@ module Tmdby
     #     TVSeries: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id
     #     TVSeasons: freebase_mid, freebase_id, tvdb_id, tvrage_id
     #     TVEpisodes: imdb_id, freebase_mid, freebase_id, tvdb_id, tvrage_id
-    def self.get(id, external_source, language = nil)
-      self.fetch id, {:external_source => external_source, :language => language}
+    def self.get(id, external_source, optional_params = {})
+      self.fetch id,
+                  optional_params,
+                  external_source: external_source,
+                  authorized_params: ["external_source", "language"]
     end
   end
 end

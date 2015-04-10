@@ -2,18 +2,30 @@ module Tmdby
   class Changes < Wrapper
 
     # Get a list of movie ids that have been edited
-    def self.movie_changes(page = nil, start_date = nil, end_date = nil)
-      self.fetch "movie/changes", {:page => page, :start_date => start_date, :end_date => end_date}
+    # Authorized params : page | start_date | end_date
+    # Example : Tmdby::Changes.movie_changes page:2
+    def self.movie_changes(params = {})
+      self.fetch "movie/changes",
+                  params,
+                  authorized_params: ['page', 'start_date', 'end_date']
     end
 
     # Get a list of people ids that have been edited
-    def self.person_changes(page = nil, start_date = nil, end_date = nil)
-      self.fetch "person/changes", {:page => page, :start_date => start_date, :end_date => end_date}
+    # Authorized params : page | start_date | end_date
+    # Example : Tmdby::Changes.person_changes page:2
+    def self.person_changes(params = {})
+      self.fetch "person/changes",
+                  params,
+                  authorized_params: ['page', 'start_date', 'end_date']
     end
 
     # Get a list of TV show ids that have been edited
-    def self.tv_changes(page = nil, start_date = nil, end_date = nil)
-      self.fetch "tv/changes", {:page => page, :start_date => start_date, :end_date => end_date}
+    # Authorized params : page | start_date | end_date
+    # Example : Tmdby::Changes.tv_changes page:2
+    def self.tv_changes(params = {})
+      self.fetch "tv/changes",
+                  params,
+                  authorized_params: ['page', 'start_date', 'end_date']
     end
   end
 end
