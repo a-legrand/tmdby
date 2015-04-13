@@ -4,16 +4,16 @@ module Tmdby
     @root = "collection"
 
     # Get the basic collection information for a specific collection id.
-    def self.get(id, params = {})
+    def self.get(id, optional_params = {})
       self.fetch id,
-                  params,
+                  optional_params,
                   authorized_params: ["language", "append_to_response"]
     end
 
     # Get all of the images for a particular collection by collection id.
-    def self.images(id, params = {})
+    def self.images(id, optional_params = {})
       self.fetch "#{id}/images",
-                  params,
+                  optional_params,
                   authorized_params: ["language","append_to_response", "include_image_language"]
     end
   end

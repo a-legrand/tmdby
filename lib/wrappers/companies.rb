@@ -4,15 +4,15 @@ module Tmdby
     @root = "company"
 
     # This method is used to retrieve all of the basic information about a company.
-    def self.get(id, params = {})
+    def self.get(id, optional_params = {})
       self.fetch id,
-                  params,
+                  optional_params,
                   authorized_params: ["append_to_response"]
     end
 
-    def self.movies(id, params = {})
+    def self.movies(id, optional_params = {})
       self.fetch "#{id}/movies",
-                  params,
+                  optional_params,
                   authorized_params: ["page", "language", "append_to_response"]
     end
   end
