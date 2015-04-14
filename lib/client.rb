@@ -10,27 +10,28 @@ module Tmdby
     @@session_id  = nil
     @@api_url     = "http://api.themoviedb.org"
     @@api_version = 3
+    @@language    = nil
 
+    # Set TMDB API Key
     def self.key=(key)
       @@api_key = key
     end
 
-    def self.api_call(method_call, api_route, params = {}, post_param_names = {})
+    def self.key
+      @@api_key
+    end
+
+    # Set default language
+    def self.language=(language)
+      @@language = language
+    end
+
+    def self.language
+      @@language
+    end
+
+    def self.api_call(method_call, api_route, params = {}, post_params = {})
       if @@api_key
-        params[:api_key] = @@api_key
-
-        # Here we move all parameters listed in "post_param_names" from "params" to "post_params" new hash
-        post_params = {}
-        post_param_names.each do |k|
-          if params.include? k
-            post_params[k] = params[k]
-            params.delete(k)
-          elsif params.include? k.to_sym
-            post_params[k] = params[k.to_sym]
-            params.delete(k.to_sym)
-          end
-        end
-
         uri = URI("#{@@api_url}/#{@@api_version}/#{api_route}?#{URI.encode_www_form(params)}")
         puts "[#{method_call}] #{uri}"
 
