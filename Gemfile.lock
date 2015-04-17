@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.5.1)
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+  minitest
