@@ -20,7 +20,7 @@ Every API is encapsulated in its own ruby class. For example, the Movie API is i
 
 **Configuration**
 
-Set your api key :
+Set up your api key :
 
 ```ruby
 Tmdby::Init.key = "your_api_key"
@@ -28,7 +28,7 @@ Tmdby::Init.key = "your_api_key"
 
 If you want, you can set a default language value :
 
-```
+```ruby
 Tmdby::Init.default_language = "fr"
 ```
 
