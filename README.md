@@ -1,6 +1,6 @@
 **work in progress**
 
-TMDBY : a Ruby wrapper for use with the [TMDB API](http://docs.themoviedb.apiary.io/).
+TMDBY : a Ruby wrapper for the [TMDB API](http://docs.themoviedb.apiary.io/)
 ---------------
 
 Features
@@ -22,7 +22,7 @@ Every API is encapsulated in its own ruby class. For example, the Movie API is i
 
 Set your api key :
 
-```
+```ruby
 Tmdby::Init.key = "your_api_key"
 ```
 
@@ -36,12 +36,20 @@ Tmdby::Init.default_language = "fr"
 
 - Get Movie by id :
 
- ```Tmdby::Movies.get 550```
+ ```ruby
+ Tmdby::Movies.get 550
+ ```
 - Find by IMDB id :
- ```Tmdby::Find.get "tt0266543", 'imdb_id', language:'es'```
+
+ ```ruby
+ Tmdby::Find.get "tt0266543", 'imdb_id', language:'es'
+ ```
 
 - Discover Movies by criterias :
- ```Tmdby::Discover.movie year: 1994, with_cast: 1269```
+
+ ```ruby
+ Tmdby::Discover.movie year: 1994, with_cast: 1269
+ ```
 
 _todo_
 
