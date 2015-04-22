@@ -3,32 +3,25 @@ require_relative 'minitest_wrapper.rb'
 class TestKeywords < MinitestWrapper
 
   def setup
-    Tmdby::Init.key = API_KEY
-    Tmdby::Init.default_language = nil
+   init_setup
     @keywords = Tmdby::Keywords
   end
 
   def test_get
-    response = @keywords.get 1721
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/keyword/1721?api_key=#{Tmdby::Init.key}",
+    multi_assert @keywords.get(1721),
+                    uri: "http://api.themoviedb.org/3/keyword/1721?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    assert_equal 1721, response.body["id"]
+                    code: "200",
+                    id: 1721
   end
 
   def test_movies
-    response = @keywords.movies 1721
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/keyword/1721/movies?api_key=#{Tmdby::Init.key}",
+    multi_assert @keywords.movies(1721),
+                    uri: "http://api.themoviedb.org/3/keyword/1721/movies?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    assert_equal 1721, response.body["id"]
-    refute_empty response.body["results"]
+                    code: "200",
+                    id: 1721,
+                    not_empty: "results"
   end
 
 end

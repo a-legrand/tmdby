@@ -3,43 +3,33 @@ require_relative 'minitest_wrapper.rb'
 class TestGenres < MinitestWrapper
 
   def setup
-    Tmdby::Init.key = API_KEY
-    Tmdby::Init.default_language = nil
+    init_setup
     @genres = Tmdby::Genres
   end
 
   def test_movie_list
-    response = @genres.movie_list
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/genre/movie/list?api_key=#{Tmdby::Init.key}",
+    multi_assert @genres.movie_list,
+                    uri: "http://api.themoviedb.org/3/genre/movie/list?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    refute_empty response.body["genres"]
+                    code: "200",
+                    not_empty: "genres"
   end
 
   def test_tv_list
-    response = @genres.tv_list
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/genre/tv/list?api_key=#{Tmdby::Init.key}",
+    multi_assert @genres.tv_list,
+                    uri: "http://api.themoviedb.org/3/genre/tv/list?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    refute_empty response.body["genres"]
+                    code: "200",
+                    not_empty: "genres"
   end
 
   def test_movies
-    response = @genres.movies 35
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/genre/35/movies?api_key=#{Tmdby::Init.key}",
+    multi_assert @genres.movies(35),
+                    uri: "http://api.themoviedb.org/3/genre/35/movies?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    assert_equal 35, response.body["id"]
-    refute_empty response.body["results"]
+                    code: "200",
+                    id: 35,
+                    not_empty: "results"
   end
 
 end

@@ -4,9 +4,10 @@ Dir[File.join(File.dirname(__FILE__), 'wrappers', '*.rb')].each {|file| require 
 Dir[File.join(File.dirname(__FILE__), 'helpers', '*.rb')].each {|file| require file }
 
 module Tmdby
-  class Init
+  class Setup
     @@api_key     = nil
     @@default_language = nil
+    @@api_scheme = 'http'
 
     # Set TMDB API Key
     def self.key=(key)
@@ -24,6 +25,20 @@ module Tmdby
 
     def self.default_language
       @@default_language
+    end
+
+    def self.api_scheme
+      @@api_scheme
+    end
+
+    # Set secure mode OFF
+    def self.secure=(secure)
+      @@api_scheme =
+        if not secure
+          'http'
+        else
+          'https'
+        end
     end
   end
 end

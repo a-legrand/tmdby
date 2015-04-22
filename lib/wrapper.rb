@@ -24,7 +24,7 @@ module Tmdby
 
     # Add default language to parameters if it has been setted
     def self.add_default_language
-      default_language = Tmdby::Init.default_language
+      default_language = Tmdby::Setup.default_language
 
       if default_language && !@params.key?('language') && !@params.key?(:language)
         @params['language'] = default_language
@@ -38,9 +38,9 @@ module Tmdby
 
       @params.each do |k, v|
         if post_param_names.include?k or post_param_names.include?k.to_s
-          @post_params[k.to_s] = v
+          @post_params[k.to_s] = v if v
         else
-          @clean_params[k.to_s] = v
+          @clean_params[k.to_s] = v if v
         end
       end
     end

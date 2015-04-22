@@ -1,11 +1,11 @@
 require 'minitest/autorun'
-require 'lib/init'
+require 'lib/setup'
 
 class TestWrapper < Minitest::Test
 
   def setup
-    Tmdby::Init.key = nil
-    Tmdby::Init.default_language = nil
+    Tmdby::Setup.key = nil
+    Tmdby::Setup.default_language = nil
 
     @wrapper = Tmdby::Wrapper
     @wrapper.params = {}
@@ -39,7 +39,7 @@ class TestWrapper < Minitest::Test
     assert_equal({'language' => 'fr'}, @wrapper.params) # wrapper-level language value is expected
 
     @wrapper.params = {'language' => 'fr'}
-    Tmdby::Init.default_language = "en"
+    Tmdby::Setup.default_language = "en"
     @wrapper.add_default_language
     assert_equal({'language' => 'fr'}, @wrapper.params) # wrapper-level language value is expected
 

@@ -1,17 +1,17 @@
 require 'minitest/autorun'
-require 'lib/init'
+require 'lib/setup'
 
 class TestClient < Minitest::Test
 
   def setup
-    Tmdby::Init.key = nil
-    Tmdby::Init.default_language = nil
+    Tmdby::Setup.key = nil
+    Tmdby::Setup.default_language = nil
 
     @client = Tmdby::Client
   end
 
   def test_get_uri
-    Tmdby::Init.key = "key"
+    Tmdby::Setup.key = "key"
     route = "route/hello"
     params = {"k1" => "v1", "k2" =>"v2"}
 
@@ -25,14 +25,14 @@ class TestClient < Minitest::Test
     end
 
     # valid api_key is required
-    Tmdby::Init.key = "invalid_key"
+    Tmdby::Setup.key = "invalid_key"
     params = {"k1" => "v1", "k2" =>"v2"}
     assert_raises(RuntimeError) do
       @client.api_call('get', '', params)
     end
 
     # valid method_call is required
-    Tmdby::Init.key = API_KEY
+    Tmdby::Setup.key = API_KEY
     assert_raises(RuntimeError) do
       @client.api_call('this_is_invalid_method_call', '')
     end

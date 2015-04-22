@@ -23,13 +23,20 @@ Every API is encapsulated in its own ruby class. For example, the Movie API is i
 Set up your api key :
 
 ```ruby
-Tmdby::Init.key = "your_api_key"
+Tmdby::Setup.key = "your_api_key"
+```
+
+By default, every call to TMDB Api is set in insecure mode (HTTP).
+If you want to enable HTTPS :
+
+```ruby
+Tmdby::Setup.secure = true
 ```
 
 If you want, you can set a default language value :
 
 ```ruby
-Tmdby::Init.default_language = "fr"
+Tmdby::Setup.default_language = "fr"
 ```
 
 **Example of use**
@@ -51,17 +58,39 @@ Tmdby::Init.default_language = "fr"
  Tmdby::Discover.movie year: 1994, with_cast: 1269
  ```
 
-_todo_
+You can take a look in the _tests_ directory to view a lot of examples.
+
 
 Helpers
 -------
 
 _todo_
 
+Running tests
+-------------
+
+First you have to enter your credentials (_API\_KEY_, _ACCOUNT\_ID_, _USERNAME_ and _PASSWORD_) in _tests/credentials.rb_
+
+Then you can run the test suite :
+
+```
+% ruby tests/minitest_all.rb
+
+Run options: --seed 60805
+
+\# Running:
+
+.......................................................S...................................................................S.
+
+Finished in 53.308930s, 2.3448 runs/s, 16.0573 assertions/s.
+
+125 runs, 856 assertions, 0 failures, 0 errors, 2 skips
+
+You have skipped tests. Run with --verbose for details.
+```
+
 More to come
 ------------
 
 - callback parameter support
 - images helpers
-
-_todo_

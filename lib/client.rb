@@ -4,18 +4,18 @@ require_relative 'response'
 
 module Tmdby
   class Client
-    @@api_url     = "http://api.themoviedb.org/3"
+    @@netloc     = "api.themoviedb.org/3"
 
     # Returns complete api route to call
     def self.get_uri(api_route, params = {})
-      params["api_key"] = Tmdby::Init.key
+      params["api_key"] = Tmdby::Setup.key
 
-      URI("#{@@api_url}/#{api_route}?#{URI.encode_www_form(params)}")
+      URI("#{Tmdby::Setup.api_scheme}://#{@@netloc}/#{api_route}?#{URI.encode_www_form(params)}")
     end
 
 
     def self.api_call(method_call, api_route, params = {}, post_params = {})
-      if Tmdby::Init.key
+      if Tmdby::Setup.key
         uri = self.get_uri api_route, params
         # puts "[#{method_call}] #{uri}"
 
@@ -25,19 +25,13 @@ module Tmdby
         when "post"
           response = Net::HTTP.post_form(uri, post_params)
         when "delete"
-          # http = Net::HTTP.new(@@api_url)
-          # req = Net::HTTP::Delete.new(path)
-          # response = http.request(req)
-          # pp uri.host
-          # pp "#{uri.path}?#{uri.query}"
           response = Net::HTTP.new(uri.host, uri.port).delete("#{uri.path}?#{uri.query}")
-          pp response
         else
           raise RuntimeError, "An error has occured : \"#{method_call}\" is unknown method_call"
         end
 
         if response.is_a? Net::HTTPSuccess
-          Tmdby::Response.new(response, uri, method_call)
+          Tmdby::Response.new(response, uri, method_call, post_params)
         else
           raise RuntimeError, "An error has occured : #{response.body}"
         end

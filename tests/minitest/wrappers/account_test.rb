@@ -3,58 +3,98 @@ require_relative 'minitest_wrapper.rb'
 class TestAccount < MinitestWrapper
 
   def setup
-    Tmdby::Init.key = API_KEY
-    Tmdby::Init.default_language = nil
-
-    @@session_id ||= Tmdby::Authentication.get_session_id 'tmdby_wrapper_test', 'CB4ZwmsIFtb7y4L8E0fv'
+    init_setup
+    @@session_id ||= Tmdby::Authentication.get_session_id USERNAME, PASSWORD
     @account = Tmdby::Account
   end
 
   def test_get
-    assert_api_call @account.get(@@session_id),
-                    uri: "http://api.themoviedb.org/3/account?session_id=#{@@session_id}&api_key=#{Tmdby::Init.key}",
-                    http_verb: "GET",
-                    code: "200"
+    multi_assert @account.get(@@session_id),
+                  uri: "http://api.themoviedb.org/3/account?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200"
   end
 
   def test_lists
-    skip
+    multi_assert @account.lists(ACCOUNT_ID, @@session_id),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/lists?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200",
+                  includes: "results"
   end
 
-  def test_favotie_movies
-    skip
+  def test_favorite_movies
+    multi_assert @account.favorite_movies(ACCOUNT_ID, @@session_id),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/favorite/movies?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200",
+                  includes: "results"
   end
 
   def test_favorite_tv
-    skip
+    multi_assert @account.favorite_tv(ACCOUNT_ID, @@session_id),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/favorite/tv?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200",
+                  includes: "results"
   end
 
   def test_favorite
-    skip
+    multi_assert @account.favorite(ACCOUNT_ID, @@session_id, "movie", 550, true),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/favorite?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "POST",
+                  post_params: {"media_type" => "movie", "media_id" => 550, "favorite" => true},
+                  code: "201",
+                  status_code: 12
   end
 
   def test_rated_movies
-    skip
+    multi_assert @account.rated_movies(ACCOUNT_ID, @@session_id),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/rated/movies?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200",
+                  includes: "results"
   end
 
   def test_rated_tv
-    skip
+    multi_assert @account.rated_tv(ACCOUNT_ID, @@session_id),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/rated/tv?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200",
+                  includes: "results"
   end
 
   def test_rated_tv_episodes
-    skip
+    multi_assert @account.rated_tv_episodes(ACCOUNT_ID, @@session_id),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/rated/tv/episodes?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200",
+                  includes: "results"
   end
 
   def test_watchlist_movies
-    skip
+    multi_assert @account.watchlist_movies(ACCOUNT_ID, @@session_id),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/watchlist/movies?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200",
+                  includes: "results"
   end
 
   def test_watchlist_tv
-    skip
+    multi_assert @account.watchlist_tv(ACCOUNT_ID, @@session_id),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/watchlist/tv?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "GET",
+                  code: "200",
+                  includes: "results"
   end
 
   def test_watchlist
-    skip
+    multi_assert @account.watchlist(ACCOUNT_ID, @@session_id, "movie", 550, true),
+                  uri: "http://api.themoviedb.org/3/account/#{ACCOUNT_ID}/watchlist?session_id=#{@@session_id}&api_key=#{API_KEY}",
+                  http_verb: "POST",
+                  post_params: {"media_type" => "movie", "media_id" => 550, "watchlist" => true},
+                  code: "201",
+                  status_code: 12
   end
 
 end

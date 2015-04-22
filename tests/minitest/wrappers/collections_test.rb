@@ -3,33 +3,26 @@ require_relative 'minitest_wrapper.rb'
 class TestCollections < MinitestWrapper
 
   def setup
-    Tmdby::Init.key = API_KEY
-    Tmdby::Init.default_language = nil
+    init_setup
     @collections = Tmdby::Collections
   end
 
   def test_get
-    response = @collections.get 10
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/collection/10?api_key=#{Tmdby::Init.key}",
+    multi_assert @collections.get(10),
+                    uri: "http://api.themoviedb.org/3/collection/10?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    assert_equal 10, response.body["id"]
-    refute_empty response.body["parts"]
+                    code: "200",
+                    id: 10,
+                    not_empty: "parts"
   end
 
   def test_images
-    response = @collections.images 10
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/collection/10/images?api_key=#{Tmdby::Init.key}",
+    multi_assert @collections.images(10),
+                    uri: "http://api.themoviedb.org/3/collection/10/images?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    assert_equal 10, response.body["id"]
-    refute_empty response.body["backdrops"]
+                    code: "200",
+                    id: 10,
+                    not_empty: "backdrops"
   end
 
 

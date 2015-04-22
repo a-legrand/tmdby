@@ -9,8 +9,11 @@ module Tmdby
     end
 
     # Delete a list by id.
-    def self.delete(id) # TODO
-      self.fetch id, method: "delete"
+    def self.delete(id, session_id)
+      self.fetch id,
+                  method: "delete",
+                  session_id: session_id,
+                  authorized_params: ["session_id"]
     end
 
     # Check to see if a movie ID is already added to a list.

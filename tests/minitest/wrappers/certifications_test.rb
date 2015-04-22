@@ -3,34 +3,24 @@ require_relative 'minitest_wrapper.rb'
 class TestCertifications < MinitestWrapper
 
   def setup
-    Tmdby::Init.key = API_KEY
-    Tmdby::Init.default_language = nil
-
+    init_setup
     @certifications = Tmdby::Certifications
   end
 
   def test_movie_list
-    response = @certifications.movie_list
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/certification/movie/list?api_key=#{Tmdby::Init.key}",
+    multi_assert @certifications.movie_list,
+                    uri: "http://api.themoviedb.org/3/certification/movie/list?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    assert_includes response.body, "certifications"
-    assert_includes response.body["certifications"], "US"
+                    code: "200",
+                    includes: "certifications"
   end
 
   def test_tv_list
-    response = @certifications.tv_list
-
-    assert_api_call response,
-                    uri: "http://api.themoviedb.org/3/certification/tv/list?api_key=#{Tmdby::Init.key}",
+    multi_assert @certifications.tv_list,
+                    uri: "http://api.themoviedb.org/3/certification/tv/list?api_key=#{API_KEY}",
                     http_verb: "GET",
-                    code: "200"
-
-    assert_includes response.body, "certifications"
-    assert_includes response.body["certifications"], "US"
+                    code: "200",
+                    includes: "certifications"
   end
 
 

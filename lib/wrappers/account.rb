@@ -10,8 +10,6 @@ module Tmdby
                   authorized_params: ["session_id"]
     end
 
-    # For all next apis, don't know why ID is require. It seems ignored by TMDB...
-
     # Get the lists that you have created and marked as a favorite.
     def self.lists(id, session_id, optional_params = {})
       self.fetch "#{id}/lists",
