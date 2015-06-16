@@ -1,7 +1,10 @@
-require_relative 'wrapper'
-require_relative 'client'
-Dir[File.join(File.dirname(__FILE__), 'wrappers', '*.rb')].each {|file| require file }
-Dir[File.join(File.dirname(__FILE__), 'helpers', '*.rb')].each {|file| require file }
+require "tmdby/version"
+
+require_relative 'tmdby/wrapper'
+require_relative 'tmdby/client'
+Dir[File.join(File.dirname(__FILE__), 'tmdby', 'wrappers', '*.rb')].each {|file| require file }
+Dir[File.join(File.dirname(__FILE__), 'tmdby', 'helpers', '*.rb')].each {|file| require file }
+
 
 module Tmdby
   class Setup

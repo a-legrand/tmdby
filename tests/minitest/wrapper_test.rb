@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require 'lib/setup'
+require 'tmdby'
 
 class TestWrapper < Minitest::Test
 
