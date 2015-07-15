@@ -8,20 +8,21 @@ class MinitestWrapper < Minitest::Test
     Tmdby::Setup.default_language = nil
   end
 
-  def multi_assert(result,
-                   uri:,
-                   http_verb:,
-                   code:,
-                   includes: nil,
-                   status_code: nil,
-                   id: nil,
-                   empty: nil,
-                   not_empty: nil,
-                   not_nil: nil,
-                   must_be_true: nil,
-                   must_be_false: nil,
-                   post_params: nil
-                  )
+  def multi_assert(result, params = {})
+    uri = params[:uri] || throw('missing uri') # required
+    http_verb = params[:http_verb] || throw('missing http_verb') # required
+    code = params[:code] || throw('missing code') # required
+
+    includes = params[:includes]
+    status_code = params[:status_code]
+    id = params[:id]
+    empty = params[:empty]
+    not_empty = params[:not_empty]
+    not_nil = params[:not_nil]
+    must_be_true = params[:must_be_true]
+    must_be_false = params[:must_be_false]
+    post_params = params[:post_params]
+
     assert_equal uri, result.uri.to_s
     assert_equal http_verb, result.http_verb
     assert_equal code, result.code
