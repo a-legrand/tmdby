@@ -64,7 +64,7 @@ module Tmdby
       self.fetch "tv",
                   optional_params,
                   query: query,
-                  authorized_params: ["query", "page", "language", "first_aid_date_year", "search_type"]
+                  authorized_params: ["query", "page", "language", "first_air_date_year", "search_type"]
     end
 
   end
