@@ -45,10 +45,25 @@ module Tmdby
       end
     end
 
-    #
-    def self.fetch(route = "", *args, method: "get", post_params: [], authorized_params: [], disable_unknown_params: false, **params)
-      @params = params
-      @params.merge!(args[0]) if not args.empty?
+    def self.fetch(route = "", *args)
+
+      if args.length == 0
+        options = {}
+      elsif args.length == 1
+        options = args[0]
+      elsif args.length == 2
+        options = args[1].merge(args[0])
+      end
+
+      method = options.fetch(:method, 'get')
+      post_params = options.fetch(:post_params, [])
+      authorized_params = options.fetch(:authorized_params, [])
+      disable_unknown_params = options.fetch(:disable_unknown_params, false)
+      [:method, :post_params, :authorized_params, :disable_unknown_params].each do |key|
+        options.delete(key)
+      end
+
+      @params = options
 
       self.add_default_language if authorized_params.include?'language'
       self.verify_params authorized_params unless disable_unknown_params or authorized_params.include?"append_to_response"
