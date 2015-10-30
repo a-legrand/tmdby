@@ -1,5 +1,3 @@
-**work in progress**
-
 TMDBY : a Ruby wrapper for the [TMDB API](http://docs.themoviedb.apiary.io/)
 ---------------
 
@@ -107,7 +105,7 @@ Changelog
 
 [TMDB API updates](https://www.themoviedb.org/documentation/api/updates)
 
-- 2015-10-30 Up-to-date with "Jurrasic World" TMDB API update
+- 2015-10-30 Up-to-date with "Jurassic World" TMDB API update
 
 
 More to come
