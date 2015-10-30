@@ -75,6 +75,15 @@ module Tmdby
                   authorized_params: ["session_id", "guest_session_id", "value"]
     end
 
+    # This method lets users delete a TV rating.
+    def self.delete_rating(id, session_id, guest_session_id = nil)
+      self.fetch "#{id}/rating",
+                  method: 'delete',
+                  session_id: session_id,
+                  guest_session_id: guest_session_id,
+                  authorized_params: ["session_id", "guest_session_id"]
+    end
+
     # Get the similar TV shows for a specific tv id.
     def self.similar(id, optional_params = {})
       self.fetch "#{id}/similar",

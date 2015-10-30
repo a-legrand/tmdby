@@ -20,7 +20,8 @@ module Tmdby
       self.fetch "tv",
                   optional_params,
                   authorized_params: [  "page", "language", "sort_by", "first_air_date_year", "vote_count.gte",
-                                        "vote_average.gte", "with_genres", "with_networks", "first_air_date.gte", "first_air_date.lte"
+                                        "vote_average.gte", "with_genres", "with_networks", "first_air_date.gte", "first_air_date.lte",
+                                        "timezone", "air_date.gte", "air_date.lte"
                                       ]
     end
   end

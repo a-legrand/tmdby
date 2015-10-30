@@ -102,6 +102,18 @@ class TestTv < MinitestWrapper
                   status_code: 1
   end
 
+  def test_delete_rating
+    guest_session_id = Tmdby::Authentication.guest_session_new.body["guest_session_id"]
+
+    @tv.rating(57243, 8, nil, guest_session_id)
+
+    multi_assert @tv.delete_rating(57243, nil, guest_session_id),
+                  uri: "http://api.themoviedb.org/3/tv/57243/rating?guest_session_id=#{guest_session_id}&api_key=#{API_KEY}",
+                  http_verb: "DELETE",
+                  code: "200",
+                  status_code: 13
+  end
+
   def test_similar
     multi_assert @tv.similar(1396),
                   uri: "http://api.themoviedb.org/3/tv/1396/similar?api_key=#{API_KEY}",

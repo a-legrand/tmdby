@@ -75,6 +75,18 @@ class TestTvEpisodes < MinitestWrapper
                   status_code: 1
   end
 
+  def test_delete_rating
+    guest_session_id = Tmdby::Authentication.guest_session_new.body["guest_session_id"]
+
+    @tv_episodes.rating(57243, 1, 1, 8, nil, guest_session_id)
+
+    multi_assert @tv_episodes.delete_rating(57243, 1, 1, nil, guest_session_id),
+                  uri: "http://api.themoviedb.org/3/tv/57243/season/1/episode/1/rating?guest_session_id=#{guest_session_id}&api_key=#{API_KEY}",
+                  http_verb: "DELETE",
+                  code: "200",
+                  status_code: 13
+  end
+
   def test_videos
     multi_assert @tv_episodes.videos(1396, 1, 1),
                   uri: "http://api.themoviedb.org/3/tv/1396/season/1/episode/1/videos?api_key=#{API_KEY}",

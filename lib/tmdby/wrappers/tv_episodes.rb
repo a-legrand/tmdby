@@ -52,6 +52,15 @@ module Tmdby
                   authorized_params: ["session_id", "guest_session_id", "value"]
     end
 
+    # This method lets users delete a TV episode rating.
+    def self.delete_rating(id, season_number, episode_number, session_id, guest_session_id = nil)
+      self.fetch "#{id}/season/#{season_number}/episode/#{episode_number}/rating",
+                  method: 'delete',
+                  session_id: session_id,
+                  guest_session_id: guest_session_id,
+                  authorized_params: ["session_id", "guest_session_id"]
+    end
+
     # Get the videos that have been added to a TV episode (teasers, clips, etc...)
     def self.videos(id, season_number, episode_number, optional_params = {})
       self.fetch "#{id}/season/#{season_number}/episode/#{episode_number}/videos",

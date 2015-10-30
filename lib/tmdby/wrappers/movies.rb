@@ -105,6 +105,15 @@ module Tmdby
                   authorized_params: ["session_id", "guest_session_id", "value"]
     end
 
+    # This method lets users remove a movie rating.
+    def self.delete_rating(id, session_id, guest_session_id = nil)
+      self.fetch "#{id}/rating",
+                  method: 'delete',
+                  session_id: session_id,
+                  guest_session_id: guest_session_id,
+                  authorized_params: ["session_id", "guest_session_id"]
+    end
+
     # Get the latest movie id.
     def self.latest
       self.fetch "latest"
