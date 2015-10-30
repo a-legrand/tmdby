@@ -102,6 +102,14 @@ Finished in 53.308930s, 2.3448 runs/s, 16.0573 assertions/s.
 You have skipped tests. Run with --verbose for details.
 ```
 
+Changelog
+---------
+
+[TMDB API updates](https://www.themoviedb.org/documentation/api/updates)
+
+- 2015-10-30 Up-to-date with "Jurrasic World" TMDB API update
+
+
 More to come
 ------------
 
