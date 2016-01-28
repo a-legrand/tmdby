@@ -1,6 +1,6 @@
 require "net/http"
 require 'uri'
-require_relative 'response'
+require File.join(File.dirname(__FILE__), 'response')
 
 module Tmdby
   class Client

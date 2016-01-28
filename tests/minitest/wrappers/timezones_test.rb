@@ -1,4 +1,4 @@
-require_relative 'minitest_wrapper.rb'
+require File.join(File.dirname(__FILE__), 'minitest_wrapper.rb')
 
 class TestTimezones < MinitestWrapper
 

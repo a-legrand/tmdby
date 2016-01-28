@@ -1,7 +1,7 @@
 require "tmdby/version"
 
-require_relative 'tmdby/wrapper'
-require_relative 'tmdby/client'
+require File.join(File.dirname(__FILE__), 'tmdby/wrapper')
+require File.join(File.dirname(__FILE__), 'tmdby/client')
 Dir[File.join(File.dirname(__FILE__), 'tmdby', 'wrappers', '*.rb')].each {|file| require file }
 Dir[File.join(File.dirname(__FILE__), 'tmdby', 'helpers', '*.rb')].each {|file| require file }
 
