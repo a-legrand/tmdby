@@ -2,6 +2,7 @@ TMDBY : a Ruby wrapper for the [TMDB API](http://docs.themoviedb.apiary.io/)
 ---------------
 
 [![Gem Version](https://badge.fury.io/rb/tmdby.svg)](https://badge.fury.io/rb/tmdby)
+[![Build Status](https://travis-ci.org/a-legrand/tmdby.svg?branch=master)](https://travis-ci.org/a-legrand/tmdby)
 
 Features
 --------
