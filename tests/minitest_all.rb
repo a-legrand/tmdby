@@ -9,11 +9,8 @@ USERNAME = ENV['TMDB_USERNAME']
 PASSWORD = ENV['TMDB_PASSWORD']
 ACCOUNT_ID = 0
 
-if not (API_KEY and USERNAME and PASSWORD and ACCOUNT_ID and API_KEY != "")
-  $stderr.puts "Please configure your credentials as environment variables"
-  exit
-end
-
+abort "Please configure your credentials as environment variables" unless
+  (API_KEY and USERNAME and PASSWORD and ACCOUNT_ID and API_KEY)
 
 # Monkey patch the Tmdby::Client class, so we won't reach the api rate limits
 module Tmdby
