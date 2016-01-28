@@ -52,6 +52,13 @@ module Tmdby
                   authorized_params: ["append_to_response"]
     end
 
+    # Get the release dates, certifications and related information by country for a specific movie id.
+    def self.release_dates(id, optional_params = {})
+      self.fetch "#{id}/release_dates",
+                  optional_params,
+                  authorized_params: ["append_to_response"]
+    end
+
     # Get the videos (trailers, teasers, clips, etc...) for a specific movie id.
     def self.videos(id, optional_params = {})
       self.fetch "#{id}/videos",

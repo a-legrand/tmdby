@@ -70,6 +70,15 @@ class TestMovies < MinitestWrapper
                     not_empty: "countries"
   end
 
+  def test_release_dates
+    multi_assert @movies.release_dates(550),
+                    uri: "http://api.themoviedb.org/3/movie/550/release_dates?api_key=#{API_KEY}",
+                    http_verb: "GET",
+                    code: "200",
+                    id: 550,
+                    not_empty: "results"
+  end
+
   def test_videos
     multi_assert @movies.videos(550),
                     uri: "http://api.themoviedb.org/3/movie/550/videos?api_key=#{API_KEY}",

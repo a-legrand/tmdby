@@ -106,6 +106,7 @@ Changelog
 
 [TMDB API updates](https://www.themoviedb.org/documentation/api/updates)
 
+- 2016-01-27 Add movie/id/release_dates api [See blog post](https://medium.com/tmdb-news/multiple-release-dates-per-country-and-by-type-8b2a5bf0630)
 - 2015-10-30 Up-to-date with "Jurassic World" TMDB API update
 
 
