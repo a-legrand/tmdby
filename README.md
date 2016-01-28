@@ -82,12 +82,10 @@ _todo_
 Running tests
 -------------
 
-First you have to enter your credentials (_API\_KEY_, _ACCOUNT\_ID_, _USERNAME_ and _PASSWORD_) in _tests/credentials.rb_
-
-Then you can run the test suite :
+Just call rake with your credentials :
 
 ```
-% ruby tests/minitest_all.rb
+% TMDB_API_KEY=<your_tmdb_api_key> TMDB_USERNAME=<your_tmdb_username> TMDB_PASSWORD=<your_tmdb_password> rake
 
 Run options: --seed 60805
 
