@@ -28,19 +28,21 @@ module Tmdby
     def self.changes(id, optional_params = {})
       self.fetch "#{id}/changes",
                   optional_params,
-                  authorized_params: ["start_date", "end_date"]
+                  authorized_params: ["start_date", "end_date", "page"]
     end
 
     # Get the content ratings for a specific TV show id.
-    def self.content_ratings(id)
-      self.fetch "#{id}/content_ratings"
+    def self.content_ratings(id, optional_params = {})
+      self.fetch "#{id}/content_ratings",
+                  optional_params,
+                  authorized_params: ["language"]
     end
 
     # Get the cast & crew information about a TV series.
     def self.credits(id, optional_params = {})
       self.fetch "#{id}/credits",
                   optional_params,
-                  authorized_params: ["append_to_response"]
+                  authorized_params: ["append_to_response", "language"]
     end
 
     # Get the external ids that we have stored for a TV series.
@@ -92,8 +94,9 @@ module Tmdby
     end
 
     # Get the list of translations that exist for a TV series.
-    def self.translations(id)
-      self.fetch "#{id}/translations"
+    def self.translations(id, optional_params = {})
+      self.fetch "#{id}/translations",
+                  authorized_params: ["language"]
     end
 
     # Get the videos that have been added to a TV series (trailers, opening credits, etc...)
@@ -134,6 +137,13 @@ module Tmdby
       self.fetch "popular",
                   optional_params,
                   authorized_params: ["page", "language"]
+    end
+
+    # Get the list of TV show recommendations for this item.
+    def self.recommendations(id, optional_params = {})
+      self.fetch "#{id}/recommendations",
+                  optional_params,
+                  authorized_params: ["language", "page"]
     end
 
   end

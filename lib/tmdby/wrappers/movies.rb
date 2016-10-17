@@ -45,13 +45,6 @@ module Tmdby
                   authorized_params: ["append_to_response"]
     end
 
-    # Get the release date and certification information by country for a specific movie id.
-    def self.releases(id, optional_params = {})
-      self.fetch "#{id}/releases",
-                  optional_params,
-                  authorized_params: ["append_to_response"]
-    end
-
     # Get the release dates, certifications and related information by country for a specific movie id.
     def self.release_dates(id, optional_params = {})
       self.fetch "#{id}/release_dates",
@@ -98,7 +91,7 @@ module Tmdby
     def self.changes(id, optional_params = {})
       self.fetch "#{id}/changes",
                   optional_params,
-                  authorized_params: ["start_date", "end_date"]
+                  authorized_params: ["start_date", "end_date", "page"]
     end
 
     # This method lets users rate a movie.
@@ -154,6 +147,12 @@ module Tmdby
                   authorized_params: ["page", "language"]
     end
 
+    # Get a list of recommended movies for a movie.
+    def self.recommendations(id, optional_params = {})
+      self.fetch "#{id}/recommendations",
+                  optional_params,
+                  authorized_params: ["language", "page"]
+    end
 
   end
 end

@@ -27,14 +27,6 @@ module Tmdby
                   authorized_params: ["query", "page"]
     end
 
-    # Search for lists by name and description.
-    def self.list(query, optional_params = {})
-      self.fetch "list",
-                  optional_params,
-                  query: query,
-                  authorized_params: ["query", "page", "include_adult"]
-    end
-
     # Search for movies by title.
     def self.movie(query, optional_params = {})
       self.fetch "movie",

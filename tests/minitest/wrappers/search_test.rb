@@ -31,14 +31,6 @@ class TestSearch < MinitestWrapper
                     not_empty: "results"
   end
 
-  def test_list
-    multi_assert @search.list("warner"),
-                    uri: "http://api.themoviedb.org/3/search/list?query=warner&api_key=#{API_KEY}",
-                    http_verb: "GET",
-                    code: "200",
-                    not_empty: "results"
-  end
-
   def test_movie
     multi_assert @search.movie("matrix"),
                     uri: "http://api.themoviedb.org/3/search/movie?query=matrix&api_key=#{API_KEY}",

@@ -180,4 +180,12 @@ class TestTv < MinitestWrapper
                   includes: "results"
   end
 
+  def test_recommendations
+    multi_assert @tv.recommendations(1396),
+                    uri: "http://api.themoviedb.org/3/tv/1396/recommendations?api_key=#{API_KEY}",
+                    http_verb: "GET",
+                    code: "200",
+                    includes: "results"
+  end
+
 end

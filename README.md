@@ -1,4 +1,4 @@
-TMDBY : a Ruby wrapper for the [TMDB API](http://docs.themoviedb.apiary.io/)
+TMDBY : a Ruby wrapper for the [TMDB API](https://developers.themoviedb.org/3/getting-started)
 ---------------
 
 [![Gem Version](https://badge.fury.io/rb/tmdby.svg)](https://badge.fury.io/rb/tmdby)
@@ -106,6 +106,7 @@ Changelog
 
 [TMDB API updates](https://www.themoviedb.org/documentation/api/updates)
 
+- 2016-10-17 Add recommendation api , up-to-date with "Captain America" TMDB API update [See blog post](https://blog.themoviedb.org/september-updates-4342b9c71c0f)
 - 2016-01-27 Add movie/id/release_dates api [See blog post](https://medium.com/tmdb-news/multiple-release-dates-per-country-and-by-type-8b2a5bf0630)
 - 2015-10-30 Up-to-date with "Jurassic World" TMDB API update
 

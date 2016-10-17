@@ -14,7 +14,7 @@ module Tmdby
     def self.changes(id, optional_params = {})
       self.fetch "episode/#{id}/changes",
                   optional_params,
-                  authorized_params: ["start_date", "end_date"]
+                  authorized_params: ["start_date", "end_date", "page"]
     end
 
     # This method lets users get the status of whether or not the TV episode has been rated.
@@ -32,8 +32,7 @@ module Tmdby
     # Get the external ids for a TV episode by comabination of a season and episode number.
     def self.external_ids(id, season_number, episode_number, optional_params = {})
       self.fetch "#{id}/season/#{season_number}/episode/#{episode_number}/external_ids",
-                  optional_params,
-                  authorized_params: ["language"]
+                  optional_params
     end
 
     # Get the images (episode stills) for a TV episode by combination of a season and episode number.
